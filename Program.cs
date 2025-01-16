@@ -13,16 +13,57 @@ namespace compare_algorithm
         }
         static int[] CreateArray(int size, Random r)
         {
-            
+            int[] nums = new int[size];
+            for (int i = 0; i < size; i++)
+            {
+                nums[i] = r.Next();
+            }
+            return nums;
         }
         static void menu()
         {
-
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1: Linear Search  ");
+            Console.WriteLine("2: Binary Search  ");
+            Console.WriteLine("3: Bubble Sort  ");
+            Console.WriteLine("4: Merge Sort  ");
+            Console.WriteLine("9: Quit ");
+            Console.WriteLine("-------------------------------------------------------");
+            
         }
         
         static void BubbleSort(int[] a)
         {
+            int temp;
+            bool swaps = false;
+            int count = 0;
+          
+            do
+            {
+                swaps = false;
+                for (int j = 0; j < a.Length - 1; j++)
+                {
+                    if (a[j] > a[j + 1])
+                    {
+                        temp = a[j];
+                      a[j] =a[j + 1];
+                       a[j + 1] = temp;
+                        swaps = true;
+                    }
+                    count++;
+                }
+
+
+            } while (swaps);
             
+            Console.WriteLine("The array is sorted");
+            foreach (int i in a)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine($"It took {count} operations to do so");
+           
         }
         static void Merge(int[] a, int low, int mid, int high)
         {
@@ -80,11 +121,68 @@ namespace compare_algorithm
         }
         static bool LinearSearch(int[] a, int numToFind)
         {
-
+            bool found = false;
+            while (found != true)
+            {
+                int count = 0;
+                if (a[count] == numToFind)
+                {
+                    found = true;
+                }
+                count++;
+            }
+            return found;
         }
         static bool BinarySearch(int[] a, int numToFind)
         {
-            
+            decimal mid = 0;
+
+            if ((a.Length +1) % 2 == 0)
+            {
+                mid = (a.Length + 1) / 2;
+            }
+            else
+            {
+                mid = (a.Length + 1) / 2;
+                mid = (Math.Floor(mid));
+            }
+           
+            int upper = a.GetUpperBound(0);
+            int lower = a.GetLowerBound(0);
+
+            bool found = false;
+            bool present = false;
+            while (found == false)
+            {
+                if (mid == numToFind)
+                {
+                    found = true;
+                    present = true;
+                }
+                else if (mid < numToFind)
+                {
+                    upper = Convert.ToInt32(mid);
+                    mid = ((upper + lower) / 2);
+                    mid = Math.Floor(mid);
+                }
+                else if (mid >  numToFind)
+                {
+                    lower = Convert.ToInt32(mid);
+                    mid = ((upper + lower) / 2);
+                    mid = Math.Floor(mid);
+                }
+                else if (mid == 0)
+                {
+                    found = true;
+
+                }
+
+            }
+
+
+
+
+
         }
             
     }
